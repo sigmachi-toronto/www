@@ -1,0 +1,36 @@
+section {
+    padding-top: 4rem;
+}
+
+h1, h2, h5, header {
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 0.25rem;
+    margin: 0;
+    padding-bottom: 1rem;
+}
+
+#navigation h1, #navigation h5 {
+    padding: 0;
+    color: ##1FA2FF;
+}
+#navigation h1 {
+    color: #FFC837;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+a {
+    text-decoration: none;
+    color: #3D7EAA;
+}
+a:hover {
+    color: #264F6A;
+}
+
+.social-links {
+    list-style: none;
+    display: inline-flex;
+}
+.social-links li {
+    padding-right: 0.5rem;
+}
