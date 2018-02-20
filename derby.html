@@ -99,66 +99,12 @@
         <section>
             <header>Teams</header>
 
-            <table>
+            <table id="team-table">
                 <tr>
                     <th>Team</th>
                     <th>Page</th>
+                    <th>Amount Raised</th>
                     <th>Goal Amount</th>
-                </tr>
-                <tr>
-                    <td>Alpha Gamma Delta</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Alpha Omicron Pi</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Alpha Phi</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Gamma Phi Beta</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Delta Delta Delta</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Kappa Kappa Gamma</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Pi Beta Phi</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Delta Alpha Theta</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Delta Psi Delta</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Delta Phi Nu</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Delta Pi</td>
-                    <td></td>
-                    <td></td>
                 </tr>
             </table>
         </section>
@@ -174,12 +120,12 @@
                 </tr>
                 <tr>
                     <td>Ethan Bryant</td>
-                    <td></td>
+                    <td>TBA</td>
                     <td>philanthropy@sigmachitoronto.com</td>
                 </tr>
                 <tr>
                     <td>Tylar Thompson</td>
-                    <td></td>
+                    <td>TBA</td>
                     <td>consul@sigmachitoronto.com</td>
                 </tr>
             </table>
@@ -209,6 +155,93 @@
             // Fix for refreshing on lightbox page, return to photos tab.
             if (window.location.href.endsWith("#lightbox") && !lightboxImg.hasAttribute("style")) {
                 window.location.href = window.location.hostname + window.location.pathname + "#photos"
+            }
+
+            renderTeams()
+        }
+
+        function renderTeams() {
+            var teamData = {
+                "Alpha Gamma Delta": {
+                    "url": "http://utoronto.alphagammadelta.org/",
+                    "page": "#",
+                    "raised": 0.00,
+                    "goal": 0.00
+                },
+                "Alpha Omicron Pi": {
+                    "url": "http://utoronto.alphaomicronpi.org/",
+                    "page": "#",
+                    "raised": 0.00,
+                    "goal": 0.00
+                },
+                "Alpha Phi": {
+                    "url": "http://alphaphialumto.com/",
+                    "page": "#",
+                    "raised": 0.00,
+                    "goal": 0.00
+                }, 
+                "Gamma Phi Beta": {
+                    "url": "https://www.gammaphibetatoronto.com/",
+                    "page": "#",
+                    "raised": 0.00,
+                    "goal": 0.00
+                }, 
+                "Delta Delta Delta": {
+                    "url": "http://utoronto.tridelta.org/",
+                    "page": "#",
+                    "raised": 0.00,
+                    "goal": 0.00
+                }, 
+                "Kappa Kappa Gamma": {
+                    "url": "http://utoronto.kappa.org/",
+                    "page": "#",
+                    "raised": 0.00,
+                    "goal": 0.00
+                },
+                "Pi Beta Phi": {
+                    "url": "https://www.pibetaphi.org/pibetaphi/utoronto",
+                    "page": "#",
+                    "raised": 0.00,
+                    "goal": 0.00
+                },
+                "Delta Alpha Theta": {
+                    "url": "http://deltaalphatheta.wixsite.com/gamma",
+                    "page": "#",
+                    "raised": 0.00,
+                    "goal": 0.00
+                },
+                "Delta Psi Delta": {
+                    "url": "http://deltapsideltatoronto.wixsite.com/gammachapter",
+                    "page": "#",
+                    "raised": 0.00,
+                    "goal": 0.00
+                },
+                "Delta Phi Nu": {
+                    "url": "https://deltaphinutoronto.wixsite.com/sigmatau",
+                    "page": "#",
+                    "raised": 0.00,
+                    "goal": 0.00
+                },
+                "Delta Pi": {
+                    "url": "http://www.deltapisorority.org/alpha_chapter-toronto",
+                    "page": "#",
+                    "raised": 0.00,
+                    "goal": 0.00
+                }
+            }
+
+            var teamTable = document.getElementById("team-table")
+
+            for (name in teamData) {
+                var team = teamData[name]
+
+                var item = document.createElement("tr")
+                item.innerHTML = '<td><a href="' + team.url + '">' + name + '</a></td>' +
+                    '<td><a href="' + team.page + '">Page</a></td>'
+                    '<td>$' + team.raised + '</td>'
+                    '<td>$' + team.goal + '</td>'
+
+                teamTable.appendChild(item)
             }
         }
 
