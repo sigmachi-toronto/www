@@ -102,7 +102,7 @@
             <table id="team-table">
                 <tr>
                     <th>Team</th>
-                    <th>Page</th>
+                    <th>Donation Page</th>
                     <th>Amount Raised</th>
                     <th>Goal Amount</th>
                 </tr>
@@ -179,19 +179,19 @@
                     "page": "#",
                     "raised": 0.00,
                     "goal": 0.00
-                }, 
+                },
                 "Gamma Phi Beta": {
                     "url": "https://www.gammaphibetatoronto.com/",
                     "page": "#",
                     "raised": 0.00,
                     "goal": 0.00
-                }, 
+                },
                 "Delta Delta Delta": {
                     "url": "http://utoronto.tridelta.org/",
                     "page": "#",
                     "raised": 0.00,
                     "goal": 0.00
-                }, 
+                },
                 "Kappa Kappa Gamma": {
                     "url": "http://utoronto.kappa.org/",
                     "page": "#",
@@ -206,9 +206,9 @@
                 },
                 "Delta Alpha Theta": {
                     "url": "http://deltaalphatheta.wixsite.com/gamma",
-                    "page": "#",
+                    "page": "https://us-p2p.netdonor.net/223/derby-challenge/13806/matthews-derby-challenge",
                     "raised": 0.00,
-                    "goal": 0.00
+                    "goal": 500.00
                 },
                 "Delta Psi Delta": {
                     "url": "http://deltapsideltatoronto.wixsite.com/gammachapter",
@@ -237,8 +237,8 @@
 
                 var item = document.createElement("tr")
                 item.innerHTML = '<td><a href="' + team.url + '">' + name + '</a></td>' +
-                    '<td><a href="' + team.page + '">Page</a></td>'
-                    '<td>$' + team.raised + '</td>'
+                    '<td><a href="' + team.page + '">Page</a></td>' +
+                    '<td>$' + team.raised + '</td>' +
                     '<td>$' + team.goal + '</td>'
 
                 teamTable.appendChild(item)
