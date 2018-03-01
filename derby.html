@@ -18,6 +18,15 @@
         body {
             color: #E1E7EE;
         }
+
+        a {
+            text-decoration: none;
+            color: #83829D;
+        }
+
+        a:hover {
+            color: #63637A;
+        }
     </style>
 
     <!-- Load Stripe Payment processing -->
@@ -65,8 +74,10 @@
         <section id="donate">
             <header>Donate Now</header>
 
-            <p>Donating to the cause is simple! Fill out the form below and be sure to include your team if you are in one. You will recieve a confrimation e-mail once your donation has been processed!</p>
-            <p>Donation processing is made possible by the secure infrastructure provided by <a href="https://stripe.com">Stripe Payments</a>.</p>
+            <p>Donating to the cause is simple! Fill out the form below and be sure to include your team if you are in one.
+                You will recieve a confrimation e-mail once your donation has been processed!</p>
+            <p>Donation processing is made possible by the secure infrastructure provided by
+                <a href="https://stripe.com">Stripe Payments</a>.</p>
 
             <form id="donate-form" action="https://wt-f85f3bf3160461738f82ec515dee4d4d-0.run.webtask.io/donate" method="POST">
 
@@ -216,7 +227,7 @@
                 var alertMessage = 'An error ocurred while confirming your payment. If the donation completed successfully you should recieve an email shorty.'
                 var location = window.location.origin + window.location.pathname
 
-                switch(stripeStatus) {
+                switch (stripeStatus) {
                     case '1':
                         alertMessage = 'The donation form is missing or contains invalid entires. Please try again.'
                         location += "#donate"
@@ -238,7 +249,7 @@
                 }
 
                 window.location.href = location
-                alert(alertMessage)                
+                alert(alertMessage)
             }
         }
 
@@ -373,7 +384,7 @@
                         'allow-remember-me': false,
                         'panel-label': 'Donate - {{amount}}'
                     })
-                } catch(err) {
+                } catch (err) {
                     alert("Unable to properly parse donation amount. Refresh the page and try again.")
                 }
             })
