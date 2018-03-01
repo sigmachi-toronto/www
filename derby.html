@@ -19,6 +19,9 @@
             color: #E1E7EE;
         }
     </style>
+
+    <!-- Load Stripe Payment processing -->
+    <script src="https://js.stripe.com/v3/"></script>
 </head>
 
 <body>
@@ -57,6 +60,26 @@
             <center>
                 <a href="https://www.facebook.com/events/2011630112426139/" class="button">Event Page</a>
             </center>
+        </section>
+
+        <section>
+            <header>Donate Now</header>
+
+            <form action="/charge" method="post" id="payment-form" style="display: flex">
+                <div class="form-row" style="flex: 3; margin-right: 2em">
+                    <!-- <label for="card-element">
+                        Credit or debit card
+                    </label> -->
+                    <div id="card-element">
+                        <!-- A Stripe Element will be inserted here. -->
+                    </div>
+
+                    <!-- Used to display form errors. -->
+                    <div id="card-errors" role="alert"></div>
+                </div>
+
+                <button class="button" style="flex: 1">Submit Payment</button>
+            </form>
         </section>
 
         <section id="photos">
@@ -251,6 +274,67 @@
             lightboxImg.setAttribute("style", "background-image: url(" + imgUrl + ");")
 
             window.location.href = window.location.hostname + window.location.pathname + "#lightbox"
+        }
+    </script>
+    <script>
+        // Create a Stripe client.
+        var stripe = Stripe('pk_test_h1E4eaur9kFOJiX02CZpyTQu');
+
+        // Create an instance of Elements.
+        var elements = stripe.elements();
+
+        // Custom styling can be passed to options when creating an Element.
+        // (Note that this demo uses a wider set of styles than the guide below.)
+        var style = {
+            base: {
+                color: '#32325d',
+                fontSmoothing: 'antialiased',
+                fontSize: '16px',
+                '::placeholder': {
+                    color: '#aab7c4'
+                }
+            },
+            invalid: {
+                color: '#fa755a',
+                iconColor: '#fa755a'
+            }
+        };
+
+        // Create an instance of the card Element.
+        var card = elements.create('card', { style: style });
+
+        // Add an instance of the card Element into the `card-element` <div>.
+        card.mount('#card-element');
+    </script>
+    <script>
+        // Create a token or display an error when the form is submitted.
+        var form = document.getElementById('payment-form');
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            stripe.createToken(card).then(function (result) {
+                if (result.error) {
+                    // Inform the customer that there was an error.
+                    var errorElement = document.getElementById('card-errors');
+                    errorElement.textContent = result.error.message;
+                } else {
+                    // Send the token to your server.
+                    stripeTokenHandler(result.token);
+                }
+            });
+        });
+
+        function stripeTokenHandler(token) {
+            // Insert the token ID into the form so it gets submitted to the server
+            var form = document.getElementById('payment-form');
+            var hiddenInput = document.createElement('input');
+            hiddenInput.setAttribute('type', 'hidden');
+            hiddenInput.setAttribute('name', 'stripeToken');
+            hiddenInput.setAttribute('value', token.id);
+            form.appendChild(hiddenInput);
+
+            // Submit the form
+            form.submit();
         }
     </script>
 </body>
