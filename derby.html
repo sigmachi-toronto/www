@@ -62,8 +62,11 @@
             </center>
         </section>
 
-        <section>
+        <section id="donate">
             <header>Donate Now</header>
+
+            <p>Donating to the cause is simple! Fill out the form below and be sure to include your team if you are in one. You will recieve a confrimation e-mail once your donation has been processed!</p>
+            <p>Donation processing is made possible by the secure infrastructure provided by <a href="https://stripe.com">Stripe Payments</a>.</p>
 
             <form id="donate-form" action="https://wt-f85f3bf3160461738f82ec515dee4d4d-0.run.webtask.io/donate" method="POST">
 
@@ -209,19 +212,21 @@
             if (stripeStatus) {
                 console.log("stripe_status: " + stripeStatus)
 
-                window.location.href = window.location.origin + window.location.pathname
-
                 var alertMessage = 'An error ocurred while confirming your payment. If the donation completed successfully you should recieve an email shorty.'
+                var location = window.location.origin + window.location.pathname
 
                 switch(stripeStatus) {
                     case '1':
                         alertMessage = 'The donation form is missing or contains invalid entires. Please try again.'
+                        location += "#donate"
                         break;
                     case '2':
                         alertMessage = 'Please select a donation amount of at least $5.00.'
+                        location += "#donate"
                         break;
                     case '5':
                         alertMessage = 'Our payment processor was unable to validate the payment method. Please try again later.'
+                        location += "#donate"
                         break;
                     case '42':
                         alertMessage = 'Thank you for your donation. You should recieve an email confirmation shortly.'
@@ -231,6 +236,7 @@
                         break;
                 }
 
+                window.location.href = location
                 alert(alertMessage)                
             }
         }
