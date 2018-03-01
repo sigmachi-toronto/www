@@ -198,8 +198,8 @@
 
         function parseURI() {
             // Fix for refreshing on lightbox page, return to photos tab.
-            if (window.location.href.endsWith("#lightbox") && !lightboxImg.hasAttribute("style")) {
-                window.location.href = window.location.hostname + window.location.pathname + "#photos"
+            if (window.location.hash === '#lightbox' && !lightboxImg.hasAttribute('style')) {
+                window.location.hash = 'photos'
             }
 
             // Parse the stripe status.
@@ -209,9 +209,9 @@
             if (stripeStatus) {
                 console.log("stripe_status: " + stripeStatus)
 
-                window.location.href = window.location.hostname + window.location.pathname
+                window.location.href = window.location.origin + window.location.pathname
 
-                var alertMessage = "An error ocurred while confirming your payment. If the donation completed successfully you should recieve an email shorty."
+                var alertMessage = 'An error ocurred while confirming your payment. If the donation completed successfully you should recieve an email shorty.'
 
                 switch(stripeStatus) {
                     case '1':
@@ -365,7 +365,7 @@
 
             lightboxImg.setAttribute("style", "background-image: url(" + imgUrl + ");")
 
-            window.location.href = window.location.hostname + window.location.pathname + "#lightbox"
+            window.location.hash = "lightbox"
         }
     </script>
 </body>
