@@ -87,6 +87,8 @@
                         <option value="1000">$10.00</option>
                         <option value="2500">$25.00</option>
                         <option value="5000">$50.00</option>
+                        <option value="7500">$75.00</option>
+                        <option value="10000">$100.00</option>
                     </select>
                 </div>
 
@@ -114,7 +116,7 @@
                     </a>
                 </li>
                 <li>
-                    <a onclick="openLightbox(this)" data-largesrc="imaassets/img/photos/originalges/4.jpg">
+                    <a onclick="openLightbox(this)" data-largesrc="assets/img/photos/original/4.jpg">
                         <img width="225px" height="auto" src="assets/img/photos/thumbs/4.jpg" />
                     </a>
                 </li>
@@ -329,6 +331,18 @@
                 opt.setAttribute('value', name)
                 opt.innerText = name
                 stripeTeamSelector.appendChild(opt)
+            }
+
+            var stripeAmountSelector = document.getElementById("stripe-amount")
+            var initialAmount = 100
+
+            for (i = 1; i < 37; i++) {
+                var newAmount = initialAmount + (25 * i)
+
+                var opt2 = document.createElement('option')
+                opt2.setAttribute('value', newAmount * 100)
+                opt2.innerText = '$' + newAmount + '.00'
+                stripeAmountSelector.appendChild(opt2)
             }
         }
 
