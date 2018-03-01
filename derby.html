@@ -189,14 +189,50 @@
                 lightboxImg = document.getElementById("lightbox-img")
             }
 
+            parseURI()
+
+            renderTeams()
+
+            initializeStripe()
+        }
+
+        function parseURI() {
             // Fix for refreshing on lightbox page, return to photos tab.
             if (window.location.href.endsWith("#lightbox") && !lightboxImg.hasAttribute("style")) {
                 window.location.href = window.location.hostname + window.location.pathname + "#photos"
             }
 
-            renderTeams()
+            // Parse the stripe status.
+            var url = new URL(window.location.href)
+            var stripeStatus = url.searchParams.get('stripe_status')
+            var stripeMessage = decodeURIComponent(url.searchParams.get('message'))
+            if (stripeStatus) {
+                console.log("stripe_status: " + stripeStatus)
 
-            initializeStripe()
+                window.location.href = window.location.hostname + window.location.pathname
+
+                var alertMessage = "An error ocurred while confirming your payment. If the donation completed successfully you should recieve an email shorty."
+
+                switch(stripeStatus) {
+                    case '1':
+                        alertMessage = 'The donation form is missing or contains invalid entires. Please try again.'
+                        break;
+                    case '2':
+                        alertMessage = 'Please select a donation amount of at least $5.00.'
+                        break;
+                    case '5':
+                        alertMessage = 'Our payment processor was unable to validate the payment method. Please try again later.'
+                        break;
+                    case '42':
+                        alertMessage = 'Thank you for your donation. You should recieve an email confirmation shortly.'
+                        break;
+                    default:
+                        console.log('Entered default scenario with code: ' + stripeStatus)
+                        break;
+                }
+
+                alert(alertMessage)                
+            }
         }
 
         function renderTeams() {
