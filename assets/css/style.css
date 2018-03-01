@@ -20,10 +20,10 @@ h1, h2, h5, header {
 
 a {
     text-decoration: none;
-    color: #3D7EAA;
+    color: #83829d;
 }
 a:hover {
-    color: #264F6A;
+    color: #63637a;
 }
 a[onclick] {
     cursor: pointer;
