@@ -21,7 +21,7 @@
     </style>
 
     <!-- Load Stripe Payment processing -->
-    <script src="https://js.stripe.com/v3/"></script>
+    <script src="https://checkout.stripe.com/checkout.js"></script>
 </head>
 
 <body>
@@ -65,20 +65,34 @@
         <section>
             <header>Donate Now</header>
 
-            <form action="/charge" method="post" id="payment-form" style="display: flex">
-                <div class="form-row" style="flex: 3; margin-right: 2em">
-                    <!-- <label for="card-element">
-                        Credit or debit card
-                    </label> -->
-                    <div id="card-element">
-                        <!-- A Stripe Element will be inserted here. -->
-                    </div>
+            <form id="donate-form" action="https://wt-f85f3bf3160461738f82ec515dee4d4d-0.run.webtask.io/donate" method="POST">
 
-                    <!-- Used to display form errors. -->
-                    <div id="card-errors" role="alert"></div>
+                <!-- Personal details -->
+                <div style="display: flex">
+                    <input style="flex: 98" name="fullName" type="text" placeholder="Full Name" required="true">
                 </div>
 
-                <button class="button" style="flex: 1">Submit Payment</button>
+                <!-- Team details -->
+                <div style="display: flex">
+                    <select id="stripe-team" name="team" style="flex: 98" required="true">
+                        <option value="none" selected>No Team</option>
+                    </select>
+                    <div style="flex: 2"></div>
+                    <select id="stripe-amount" name="amount" style="flex: 98" required="true">
+                        <option value="" selected disabled>Donation amount</option>
+                        <option value="500">$5.00</option>
+                        <option value="1000">$10.00</option>
+                        <option value="2500">$25.00</option>
+                        <option value="5000">$50.00</option>
+                    </select>
+                </div>
+
+                <input id="stripeEmail" type="hidden" name="stripeEmail">
+                <input id="stripeTokenInput" type="hidden" name="stripeToken">
+
+                <center>
+                    <button class="button" type="submit">Donate</button>
+                </center>
             </form>
         </section>
 
@@ -181,6 +195,8 @@
             }
 
             renderTeams()
+
+            initializeStripe()
         }
 
         function renderTeams() {
@@ -254,6 +270,7 @@
             }
 
             var teamTable = document.getElementById("team-table")
+            var stripeTeamSelector = document.getElementById("stripe-team")
 
             for (name in teamData) {
                 var team = teamData[name]
@@ -265,7 +282,46 @@
                     '<td>$' + team.goal + '</td>'
 
                 teamTable.appendChild(item)
+
+                var opt = document.createElement('option')
+                opt.setAttribute('value', name)
+                opt.innerText = name
+                stripeTeamSelector.appendChild(opt)
             }
+        }
+
+        function initializeStripe() {
+            var donateForm = document.getElementById('donate-form')
+
+            var handler = StripeCheckout.configure({
+                key: 'pk_test_h1E4eaur9kFOJiX02CZpyTQu',
+                locale: 'auto',
+                name: 'Sigma Chi Toronto',
+                description: 'One-time donation',
+                token: function (token) {
+                    document.getElementById('stripeTokenInput').setAttribute('value', token.id)
+                    document.getElementById('stripeEmail').setAttribute('value', token.email)
+                    donateForm.submit()
+                }
+            });
+
+            donateForm.addEventListener('submit', function (event) {
+                event.preventDefault()
+
+                try {
+                    var amountSelector = document.getElementById('stripe-amount')
+
+                    var donateAmount = parseFloat(amountSelector.options[amountSelector.selectedIndex].value)
+
+                    handler.open({
+                        'amount': donateAmount,
+                        'allow-remember-me': false,
+                        'panel-label': 'Donate - {{amount}}'
+                    })
+                } catch(err) {
+                    alert("Unable to properly parse donation amount. Refresh the page and try again.")
+                }
+            })
         }
 
         function openLightbox(element) {
@@ -274,67 +330,6 @@
             lightboxImg.setAttribute("style", "background-image: url(" + imgUrl + ");")
 
             window.location.href = window.location.hostname + window.location.pathname + "#lightbox"
-        }
-    </script>
-    <script>
-        // Create a Stripe client.
-        var stripe = Stripe('pk_test_h1E4eaur9kFOJiX02CZpyTQu');
-
-        // Create an instance of Elements.
-        var elements = stripe.elements();
-
-        // Custom styling can be passed to options when creating an Element.
-        // (Note that this demo uses a wider set of styles than the guide below.)
-        var style = {
-            base: {
-                color: '#32325d',
-                fontSmoothing: 'antialiased',
-                fontSize: '16px',
-                '::placeholder': {
-                    color: '#aab7c4'
-                }
-            },
-            invalid: {
-                color: '#fa755a',
-                iconColor: '#fa755a'
-            }
-        };
-
-        // Create an instance of the card Element.
-        var card = elements.create('card', { style: style });
-
-        // Add an instance of the card Element into the `card-element` <div>.
-        card.mount('#card-element');
-    </script>
-    <script>
-        // Create a token or display an error when the form is submitted.
-        var form = document.getElementById('payment-form');
-        form.addEventListener('submit', function (event) {
-            event.preventDefault();
-
-            stripe.createToken(card).then(function (result) {
-                if (result.error) {
-                    // Inform the customer that there was an error.
-                    var errorElement = document.getElementById('card-errors');
-                    errorElement.textContent = result.error.message;
-                } else {
-                    // Send the token to your server.
-                    stripeTokenHandler(result.token);
-                }
-            });
-        });
-
-        function stripeTokenHandler(token) {
-            // Insert the token ID into the form so it gets submitted to the server
-            var form = document.getElementById('payment-form');
-            var hiddenInput = document.createElement('input');
-            hiddenInput.setAttribute('type', 'hidden');
-            hiddenInput.setAttribute('name', 'stripeToken');
-            hiddenInput.setAttribute('value', token.id);
-            form.appendChild(hiddenInput);
-
-            // Submit the form
-            form.submit();
         }
     </script>
 </body>

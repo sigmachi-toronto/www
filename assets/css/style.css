@@ -47,6 +47,9 @@ table th, table td {
 table td {
     border: none;
 }
+select {
+    font-size: 1em;
+}
 
 .button {
     background-color: #83829D;
@@ -124,6 +127,10 @@ table td {
 #lightbox:target {
     visibility: visible;
 }
+input {
+    font-size: 1em;
+    color: #32325d;
+}
 
 /**
  * The CSS shown here will not be introduced in the Quickstart guide, but shows
@@ -134,6 +141,7 @@ table td {
     height: auto;
     width: 100%;
     padding: 8px 12px;
+    border-radius: 4px;
     border: 1px solid transparent;
     box-shadow: 0 1px 3px 0 #e6ebf1;
     -webkit-transition: box-shadow 150ms ease;
