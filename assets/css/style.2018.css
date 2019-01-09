@@ -52,11 +52,8 @@ select {
 }
 
 .button {
-    background-color: #FF7565;
-    color: white;
-}
-.button:hover {
-    background-color: #FF7564;
+    background-color: #83829D;
+    border-color: #3b3b47;
     color: white;
 }
 
