@@ -346,7 +346,28 @@
 
                 var opt2 = document.createElement('option')
                 opt2.setAttribute('value', newAmount * 100)
-                opt2.innerText = '$' + newAmount + '.00'
+                if (newAmount == 1000) {
+                    opt2.innerText = '$1,000.00'
+                } else {
+                    opt2.innerText = '$' + newAmount + '.00'
+                } stripeAmountSelector.appendChild(opt2)
+            }
+            var initialAmount = 1000
+            for (i = 1; i < 10; i++) {
+                var newAmount = initialAmount + (1000 * i)
+
+                var opt2 = document.createElement('option')
+                opt2.setAttribute('value', newAmount * 100)
+                opt2.innerText = '$' + newAmount/1000 + ',000.00'
+                stripeAmountSelector.appendChild(opt2)
+            }
+            var initialAmount = 10000
+            for (i = 1; i < 5; i++) {
+                var newAmount = initialAmount + (10000 * i)
+                
+                var opt2 = document.createElement('option')
+                opt2.setAttribute('value', newAmount * 100)
+                opt2.innerText = '$' + newAmount/1000 + ',000.00'
                 stripeAmountSelector.appendChild(opt2)
             }
         }
