@@ -1,0 +1,33 @@
+<section class="hero is-primary is-info">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">Executive Team</h1>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-multiline">
+      <!--loop through exec team-->
+      <div class="column is-4" *ngFor="let exec of team">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image">
+              <img src="{{ exec.image }}" alt="Placeholder image">
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="media">
+              <div class="media-content">
+                <p class="title is-4">{{ exec.name }}</p>
+                <p class="subtitle is-6">{{ exec.position }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

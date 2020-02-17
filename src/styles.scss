@@ -1,0 +1,19 @@
+#logo {
+  height: auto;
+  width: auto;
+  max-height: 37px;
+  max-width: 37px;
+  padding: 3px;
+}
+
+#intro {
+  background-image:
+    linear-gradient(
+      rgba(0, 0, 0, 0.55),
+      rgba(0, 0, 0, 0.55)
+    ),
+    url("./assets/img/sigmachiintro.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}

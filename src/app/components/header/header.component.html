@@ -1,0 +1,40 @@
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" routerLink="">
+      <img src="./assets/img/sigmachilogo.png" id="logo">
+    </a>
+    <div role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="mainNavbar" onclick="document.querySelector('.navbar-menu').classList.toggle('is-active');">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+  <div id="mainNavbar" class="navbar-menu" id="mainNav">
+    <div class="navbar-start">
+      <a class="navbar-item" routerLink="">
+        Home
+      </a>
+      <a class="navbar-item" routerLink="rush">
+        Rush Sigma Chi
+      </a>
+      <a class="navbar-item" routerLink="history">
+        History
+      </a>
+      <a class="navbar-item" routerLink="exec">
+        Executive Team
+      </a>
+      <a class="navbar-item" routerLink="philanthropy">
+        Philanthropy
+      </a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const toggleBurger = () => {
+    let burgerIcon = document.getElementById('burger');
+    let dropMenu = document.getElementById('dropMenu');
+    burgerIcon.classList.toggle('is-active');
+    dropMenu.classList.toggle('is-active');
+  };
+</script>
