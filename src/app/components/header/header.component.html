@@ -1,7 +1,7 @@
 <nav class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
     <a class="navbar-item" routerLink="">
-      <img src="./assets/img/sigmachilogo.png" id="logo">
+      <img src="./assets/img/sigmachilogo.png" id="logo" alt="The Norman Shield of Sigma Chi">
     </a>
     <div role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="mainNavbar" onclick="document.querySelector('.navbar-menu').classList.toggle('is-active');">
       <span></span>
@@ -9,7 +9,7 @@
       <span></span>
     </div>
   </div>
-  <div id="mainNavbar" class="navbar-menu" id="mainNav">
+  <div class="navbar-menu">
     <div class="navbar-start">
       <a class="navbar-item" routerLink="">
         Home
@@ -29,12 +29,3 @@
     </div>
   </div>
 </nav>
-
-<script>
-  const toggleBurger = () => {
-    let burgerIcon = document.getElementById('burger');
-    let dropMenu = document.getElementById('dropMenu');
-    burgerIcon.classList.toggle('is-active');
-    dropMenu.classList.toggle('is-active');
-  };
-</script>
