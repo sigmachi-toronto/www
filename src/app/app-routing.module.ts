@@ -5,6 +5,7 @@ import { RushComponent } from './components/rush/rush.component';
 import { HistoryComponent } from './components/history/history.component';
 import { ExecComponent } from './components/exec/exec.component';
 import { PhilanthropyComponent } from './components/philanthropy/philanthropy.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,11 @@ const routes: Routes = [
     path: 'philanthropy',
     component: PhilanthropyComponent,
     data: {title: 'Philanthropy'}
+  },
+  {
+    path: 'contact',
+    component: ContactComponent,
+    data: {title: 'Contact'}
   }
 ];
 

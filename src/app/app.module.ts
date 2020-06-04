@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +12,7 @@ import { HistoryComponent } from './components/history/history.component';
 import { ExecComponent } from './components/exec/exec.component';
 import { PhilanthropyComponent } from './components/philanthropy/philanthropy.component';
 import { TitleService } from './shared/title.service';
+import { ContactComponent } from './components/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -21,11 +23,13 @@ import { TitleService } from './shared/title.service';
     RushComponent,
     HistoryComponent,
     ExecComponent,
-    PhilanthropyComponent
+    PhilanthropyComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [ TitleService ],
   bootstrap: [ AppComponent ]
