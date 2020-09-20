@@ -17,3 +17,20 @@
   background-size: cover;
   background-position: center;
 }
+
+#rush-intro {
+  background-image:
+    linear-gradient(
+      rgba(0, 0, 0, 0.858),
+      rgba(0, 0, 0, 0.858)
+    ),
+    url("./assets/img/house-cartoon.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 85vh;
+}
