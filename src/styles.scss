@@ -6,14 +6,46 @@
   padding: 3px;
 }
 
-#intro {
+.page-content {
+  margin: 4rem;
+}
+
+.intro {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.page-intro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 85vh;
+}
+
+#home-intro {
   background-image:
     linear-gradient(
       rgba(0, 0, 0, 0.55),
       rgba(0, 0, 0, 0.55)
     ),
     url("./assets/img/sigmachiintro.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+}
+
+#rush-intro {
+  background-image:
+    linear-gradient(
+      rgba(0, 0, 0, 0.858),
+      rgba(0, 0, 0, 0.858)
+    ),
+    url("./assets/img/house-cartoon.png");
+}
+
+#history-intro {
+  background-image:
+    linear-gradient(
+      rgba(0, 0, 0, 0.858),
+      rgba(0, 0, 0, 0.858)
+    ),
+    url("./assets/img/founders.jpg");
 }
